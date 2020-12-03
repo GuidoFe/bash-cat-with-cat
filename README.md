@@ -6,4 +6,4 @@ You can modify the drawing and its position too. Check the code comments.
  
 ![example](screenshot.png)
 
-![example2](screenshot2.png)
+
