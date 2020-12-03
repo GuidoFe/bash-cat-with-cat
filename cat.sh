@@ -1,41 +1,73 @@
 #!/bin/bash
 
 ncol=`tput cols`
-t[0]='　∧＿∧  \n'
+
+# If you modify the cat, be sure to mantain the same lenght in every line (newline excluded). Be aware that some special caracters occupy the spaces of two, but they are counted as one.
+# Leave an empty array index where you want the cat output, and specify it in OUTPUT_INDEX.
+# Modify UPPER and LOWER_LINE INDEX and CHAR if you want to modify the appearance and position
+# of the two delimiters lines, or set their index at -1 if you don't want them.
+
+t[0]='  ∧＿∧  \n'
 t[1]=' ( ･ω･) \n'
 t[2]='―∪――――∪―'
 t[4]='________'
-t[5]=' |　　| \n'
-t[6]=' |　　| \n'
-t[7]='  U￣U  \n'
+t[5]=' |    | \n'
+t[6]=' |    | \n'
+t[7]='  U  U  \n'
 
-nspaces=$(($ncol / 2 - 4))
-trailspaces=$(($ncol / 2 - 4))
+#################################
+#                               #
+# Modify these constants if you #
+# modify the drawing            #
+#                               #
+#################################
+
+# Drawing width without newlines
+DRAWING_WIDTH=8
+OUTPUT_INDEX=3
+UPPER_LINE_CHAR="―"
+UPPER_LINE_INDEX=2
+LOWER_LINE_INDEX=4
+LOWER_LINE_CHAR="_"
+
+# Percentage that indicates the position of the drawing
+# in the terminal. 0 = align to the left, 100 = align to 
+# the right
+
+DRAWING_POSITION=60
+
+#################################
+
+arrayLen=${#t[@]}
+halfDrawingLen=$(($DRAWING_WIDTH / 2))
+leadingSpaces=$(($ncol * $DRAWING_POSITION / 100 - $halfDrawingLen))
+if [[ $leadingSpaces -lt 0 ]]; then
+  leadingSpaces=0
+fi
+trailingSpaces=$(($ncol - $leadingSpaces - $DRAWING_WIDTH))
+if [[ $leadingSpaces -gt $(($ncol - $DRAWING_WIDTH)) ]]; then
+    leadingSpaces=$(($ncol - $DRAWING_WIDTH))
+    trailingSpaces=0
+fi
 echo ""
-for i in {0..7}
-do
-  if [ $i -eq 3 ]; then
+for i in $(seq 0 $arrayLen); do
+  if [[ $i = $OUTPUT_INDEX ]]; then
     cat $@
   else
     car=""
-    if [ $i -eq 2 ]; then
-      car="―"
-    elif [ $i -eq 4 ]; then
-      car="_"
+    if [[ $i = $UPPER_LINE_INDEX ]]; then
+      car=$UPPER_LINE_CHAR
+    elif [[ $i = $LOWER_LINE_INDEX ]]; then
+      car=$LOWER_LINE_CHAR
     else
       car=" "
     fi
-    for s in `seq 1 $nspaces`; do
+    for s in $(seq 1 $leadingSpaces); do
       printf "$car"
     done
     printf "${t[$i]}"
-    if [ $i -eq 2 -o $i -eq 4 ]; then
-      if [ $i -eq 2 ]; then
-        car="―"
-      else
-        car="_"
-      fi
-      for s in `seq 1 $trailspaces`; do
+    if [[ $i -eq $LOWER_LINE_INDEX || $i -eq $UPPER_LINE_INDEX ]]; then
+      for s in $(seq 1 $trailingSpaces); do
         printf "$car"
       done
       printf "\n"
