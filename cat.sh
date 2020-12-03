@@ -34,7 +34,7 @@ LOWER_LINE_CHAR="_"
 # in the terminal. 0 = align to the left, 100 = align to 
 # the right
 
-DRAWING_POSITION=60
+DRAWING_POSITION=50
 
 #################################
 
