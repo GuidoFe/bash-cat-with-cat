@@ -7,13 +7,13 @@ ncol=`tput cols`
 # Modify UPPER and LOWER_LINE INDEX and CHAR if you want to modify the appearance and position
 # of the two delimiters, or set their index at -1 if you don't want them.
 
-t[0]='  ∧＿∧  \n'
-t[1]=' ( ･ω･) \n'
+t[0]='  ∧＿∧  '
+t[1]=' ( ･ω･) '
 t[2]='―∪――――∪―'
 t[4]='________'
-t[5]=' |    | \n'
-t[6]=' |    | \n'
-t[7]='  U  U  \n'
+t[5]=' |    | '
+t[6]=' |    | '
+t[7]='  U  U  '
 
 #################################
 #                               #
@@ -70,6 +70,8 @@ for i in $(seq 0 $arrayLen); do
       for s in $(seq 1 $trailingSpaces); do
         printf "$car"
       done
+      printf "\n"
+    else
       printf "\n"
     fi
   fi
