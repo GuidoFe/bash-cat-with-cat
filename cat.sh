@@ -5,7 +5,7 @@ ncol=`tput cols`
 # If you modify the cat, be sure to mantain the same lenght in every line (newline excluded). Be aware that some special caracters occupy the spaces of two, but they are counted as one.
 # Leave an empty array index where you want the cat output, and specify it in OUTPUT_INDEX.
 # Modify UPPER and LOWER_LINE INDEX and CHAR if you want to modify the appearance and position
-# of the two delimiters lines, or set their index at -1 if you don't want them.
+# of the two delimiters, or set their index at -1 if you don't want them.
 
 t[0]='  ∧＿∧  \n'
 t[1]=' ( ･ω･) \n'
