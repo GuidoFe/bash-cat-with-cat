@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ ! -t 1 ] ; then
-  cat $@
+  cat "$@"
   exit 0
 fi
 
@@ -38,7 +38,7 @@ LOWER_LINE_CHAR="_"
 # in the terminal. 0 = align to the left, 100 = align to 
 # the right
 
-DRAWING_POSITION=50
+DRAWING_POSITION=25
 
 
 #################################
@@ -57,7 +57,7 @@ fi
 echo ""
 for i in $(seq 0 $arrayLen); do
   if [[ $i = $OUTPUT_INDEX ]]; then
-    cat $@
+    cat "$@"
   else
     car=""
     if [[ $i = $UPPER_LINE_INDEX ]]; then
