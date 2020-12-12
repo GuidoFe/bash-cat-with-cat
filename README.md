@@ -9,5 +9,3 @@ You can modify the drawing and its position too. Check the code comments.
 ![example](screenshot.png)
 
 ![multiple cats](multipleCats.png)
-
-
